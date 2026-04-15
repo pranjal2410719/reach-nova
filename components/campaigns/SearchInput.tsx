@@ -2,18 +2,25 @@
 
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export function SearchInput() {
+interface SearchInputProps {
+  onSearchChange: (search: string) => void;
+}
+
+export function SearchInput({ onSearchChange }: SearchInputProps) {
   const [query, setQuery] = useState("");
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Searching for:", query);
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onSearchChange(query);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [query, onSearchChange]);
 
   return (
-    <form onSubmit={handleSearch} className="relative w-full">
+    <div className="relative w-full">
       <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
       <Input
         type="search"
@@ -22,6 +29,6 @@ export function SearchInput() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-    </form>
+    </div>
   );
 }

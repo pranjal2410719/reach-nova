@@ -1,18 +1,26 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 import Link from "next/link";
 
 interface CampaignCardProps {
   id: string;
   title: string;
   organization: string;
-  category: "Gov" | "NGO" | "CSR";
-  status: "Open" | "Closed" | "Upcoming";
+  category: string;
+  status: string;
   location: string;
   deadline: string;
   description: string;
+  budget?: string | null;
+  eligibility?: string[];
+  contactInfo?: string | null;
+  createdBy?: {
+    firstName: string;
+    lastName: string;
+  };
+  applicationCount?: number;
 }
 
 export function CampaignCard({
@@ -25,11 +33,13 @@ export function CampaignCard({
   deadline,
   description,
 }: CampaignCardProps) {
-  const statusColor = {
-    Open: "bg-success text-success-foreground",
-    Closed: "bg-destructive text-destructive-foreground",
-    Upcoming: "bg-muted text-muted-foreground",
+  const statusMap: Record<string, { label: string; className: string }> = {
+    OPEN: { label: "Open", className: "bg-green-600 text-white border-0" },
+    CLOSED: { label: "Closed", className: "bg-red-600 text-white border-0" },
+    UPCOMING: { label: "Upcoming", className: "bg-amber-500 text-white border-0" },
   };
+
+  const statusInfo = statusMap[status] || { label: status, className: "bg-muted text-muted-foreground" };
 
   return (
     <Card className="flex flex-col h-full transition-all hover:shadow-md">
@@ -38,8 +48,8 @@ export function CampaignCard({
           <Badge variant="outline" className="font-semibold text-xs tracking-wider">
             {category}
           </Badge>
-          <Badge className={`${statusColor[status]} border-0 hover:bg-opacity-90`}>
-            {status}
+          <Badge className={statusInfo.className}>
+            {statusInfo.label}
           </Badge>
         </div>
         <CardTitle className="text-xl line-clamp-1">{title}</CardTitle>
@@ -58,14 +68,14 @@ export function CampaignCard({
           </div>
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
-            <span>Deadline: {deadline}</span>
+            <span>Deadline: {new Date(deadline).toLocaleDateString()}</span>
           </div>
         </div>
       </CardContent>
       <CardFooter>
         <Link href={`/campaign/${id}`} className="w-full">
-          <Button className="w-full" variant={status === "Open" ? "default" : "secondary"}>
-            {status === "Open" ? "Register Now" : "View Details"}
+          <Button className="w-full" variant={status === "OPEN" ? "default" : "secondary"}>
+            {status === "OPEN" ? "Register Now" : "View Details"}
           </Button>
         </Link>
       </CardFooter>
