@@ -1,59 +1,36 @@
-# 🚀 ReachNova — Civic Campaign Discovery Platform (Flutter)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-ReachNova is a **Flutter-based Android application** that centralizes government schemes, NGO initiatives, CSR programs, and civic campaigns into a single, clean, and accessible mobile experience for citizens.
+## Getting Started
 
-The platform is built for **clarity, participation tracking, and real-world deployment** — not social noise or vanity engagement.
+First, run the development server:
 
----
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## 📌 Problem Statement
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Civic campaigns and government schemes are scattered across dozens of websites, PDFs, and portals.  
-Most eligible citizens never discover them, while institutions lack reliable participation data.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-**ReachNova solves this by:**
-- Aggregating campaigns into one app
-- Matching users with relevant opportunities
-- Tracking real participation
-- Converting engagement into actionable insights
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
----
+## Learn More
 
-## 🎯 Core Features
+To learn more about Next.js, take a look at the following resources:
 
-- 📍 Centralized campaign discovery (Government, NGO, CSR)
-- 🔍 Smart filters (location, eligibility, category, deadlines)
-- 🔔 Push notifications for relevant campaigns
-- 📝 One-tap campaign registration
-- 📊 Participation tracking & analytics
-- 🌗 Light & Dark mode support
-- 🔐 Secure authentication (Supabase)
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## 🛠️ Tech Stack
+## Deploy on Vercel
 
-**Frontend**
-- Flutter (Android)
-- Dart
-- Material 3
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-**Backend & Services**
-- Supabase (Auth, Database, Storage)
-- REST APIs
-
-**State Management**
-- Provider / Riverpod / Bloc (based on implementation)
-
----
-
-## 🏗️ Project Architecture
-
-```text
-lib/
-├── core/           # constants, themes, utilities
-├── data/           # models, repositories, services
-├── features/       # auth, campaigns, profile modules
-├── presentation/   # screens & reusable widgets
-├── routes/         # navigation & guards
-└── main.dart       # entry point
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
